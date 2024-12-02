@@ -3,7 +3,9 @@
 
     internal class Downloader
     {
+
         public static async Task<string> DownloadModel(string modelType, string modelSize = "small")
+
         {
             var requestUri = "";
             try
@@ -13,7 +15,7 @@
                     // Configure the request to follow redirects and handle large files
                     httpClient.DefaultRequestHeaders.Add("User-Agent", "WhisperNetDownloader");
 
-                    switch (modelType)
+                    switch (modelType.ToLower())
                     {
                         case "whisper":
                             requestUri = $"https://huggingface.co/sandrohanea/whisper.net/resolve/main/classic/ggml-{modelSize}.bin";
@@ -25,6 +27,7 @@
                             requestUri = $"https://huggingface.co/mys/ggml_llava-v1.5-7b/resolve/main/mmproj-model-f16.gguf";
                             break;
                     }
+
 
                     var localFilePath = Path.Combine("Models/", requestUri.Split('/').Last());
 
