@@ -3,7 +3,9 @@
 
     internal class Downloader
     {
-        public static async Task<string> DownloadModel(string modelType, string modelSize = "")
+
+        public static async Task<string> DownloadModel(string modelType, string modelSize = "small")
+
         {
             var requestUri = "";
             try
@@ -25,26 +27,29 @@
                             requestUri = $"https://huggingface.co/mys/ggml_llava-v1.5-7b/resolve/main/mmproj-model-f16.gguf";
                             break;
                     }
-                    // Use SendAsync with HttpCompletionOption to start downloading immediately
-                    using (var response = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
+
+
+                    var localFilePath = Path.Combine("Models/", requestUri.Split('/').Last());
+
+                    if (!File.Exists(localFilePath))
                     {
-                        response.EnsureSuccessStatusCode();
-
-                        // Determine local file path for saving the model
-                        var localFilePath = Path.Combine("Models/", requestUri.Split('/').Last());
-
-                        // Ensure directory exists
-                        Directory.CreateDirectory(Path.GetDirectoryName(localFilePath));
-
-                        // Download and save the file
-                        using (var contentStream = await response.Content.ReadAsStreamAsync())
-                        using (var fileStream = new FileStream(localFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+                        // Use SendAsync with HttpCompletionOption to start downloading immediately
+                        using (var response = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
                         {
-                            await contentStream.CopyToAsync(fileStream);
-                        }
+                            response.EnsureSuccessStatusCode();
 
-                        return localFilePath;
+                            // Ensure directory exists
+                            Directory.CreateDirectory(Path.GetDirectoryName(localFilePath));
+
+                            // Download and save the file
+                            using (var contentStream = await response.Content.ReadAsStreamAsync())
+                            using (var fileStream = new FileStream(localFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+                            {
+                                await contentStream.CopyToAsync(fileStream);
+                            }
+                        }
                     }
+                    return localFilePath;
                 }
             }
             catch (HttpRequestException ex)

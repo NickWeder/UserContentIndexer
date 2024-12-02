@@ -32,9 +32,6 @@ namespace UserContentIndexer
             // This section creates the whisperFactory object which is used to create the processor object.
             using var whisperFactory = WhisperFactory.FromPath(whisper.Name);
 
-            // We need to get the path to the xml encoder manifest file
-
-
             // This section creates the processor object which is used to process the audio file, it uses language `auto` to detect the language of the audio file.
             using var processor = whisperFactory.CreateBuilder()
                 .WithLanguage("auto")
@@ -48,6 +45,8 @@ namespace UserContentIndexer
                 text += result.Text;
                 //Console.WriteLine($"{result.Start}->{result.End}: {result.Text}");
             }
+            processor.Dispose();
+            whisperFactory.Dispose();
             return text;
         }
        
