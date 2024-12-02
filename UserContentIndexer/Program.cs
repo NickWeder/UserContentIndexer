@@ -9,8 +9,10 @@ namespace UserContentIndexer
             var video = @"C:\Users\nickx\Downloads\ImmortalityKilledTheLich.wav";
             var audioscanner = new AudioScanner();
             video = AudioConverter.ConvertMp4ToWav(video);
-            var modelPath = await Downloader.DownloadModel("small");
-            var result = await audioscanner.Whisper(video, modelPath);
+            var whisperModelPath = await Downloader.DownloadModel("whisper", "small");
+            var llavaModelPath = await Downloader.DownloadModel("llava");
+            var llamaModelPath = await Downloader.DownloadModel("llama");
+            var result = await audioscanner.Whisper(video, whisperModelPath);
             Console.WriteLine(result);
         }
     }
