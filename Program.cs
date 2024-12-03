@@ -12,7 +12,9 @@ namespace UserContentIndexer
 {
     class Program
     {
+        // Add here your Video prefered MP4 format
         internal const string VideoPath = "";
+
         static async Task Main(string[] args)
         {
             var serviceProvider = ConfigureServices();
