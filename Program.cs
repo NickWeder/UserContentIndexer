@@ -12,6 +12,7 @@ namespace UserContentIndexer
 {
     class Program
     {
+        internal const string VideoPath = "";
         static async Task Main(string[] args)
         {
             var serviceProvider = ConfigureServices();
@@ -22,11 +23,10 @@ namespace UserContentIndexer
             var downloadService = serviceProvider.GetService<IDownloadService>();
             var videoSummaryService = serviceProvider.GetService<IVideoSummaryService>();
 
-            var videoPath = @"C:\Users\nickx\Downloads\testvideo.mp4";
-            var images = sceneDetector.ProcessVideo(videoPath);
+            var images = sceneDetector.ProcessVideo(VideoPath);
 
             var whisperModelPath = await downloadService.DownloadModelAsync("whisper", "small");
-            var transcription = await audioService.TranscribeAsync(videoPath, whisperModelPath);
+            var transcription = await audioService.TranscribeAsync(VideoPath, whisperModelPath);
 
             var llavaModelPath = await downloadService.DownloadModelAsync("llava");
             var llamaModelPath = await downloadService.DownloadModelAsync("llama");
