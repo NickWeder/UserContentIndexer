@@ -9,7 +9,7 @@ namespace UserContentIndexer
     class Program
     {
 
-        // Add here your Video prefered MP4 format
+        // Add here your Video, prefered MP4 format
         internal const string VideoPath = "";
 
 
