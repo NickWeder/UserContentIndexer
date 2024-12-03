@@ -36,7 +36,8 @@ namespace UserContentIndexer
             var videoSummary = await videoSummaryService.GenerateVideoSummaryAsync(llamaModelPath, analysisResults);
             var audioSummary = await audioSummaryService.GenerateAudioSummaryAsync(llamaModelPath, transcription);
             var tags = splitResults.SplitTags(videoSummary);
-            saveResults.SaveResultsJson(videoSummary, audioSummary, tags, VideoPath);
+            var description = splitResults.SplitDescription(videoSummary);
+            saveResults.SaveResultsJson(description, audioSummary, tags, VideoPath);
 
             sceneDetector.DeleteCache();
         }

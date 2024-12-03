@@ -11,6 +11,12 @@ namespace UserContentIndexer.Services
         private readonly ILanguageModelService _languageModelService;
         private readonly PromptBuilder _promptBuilder;
 
+        public AudioSummaryService(ILanguageModelService languageModelService, PromptBuilder promptBuilder)
+        {
+            _languageModelService = languageModelService;
+            _promptBuilder = promptBuilder;
+        }
+
         public async Task<string> GenerateAudioSummaryAsync(string llamaModelPath, string trascription)
         {
             var prompt = _promptBuilder.BuildAudioSummaryPrompt(trascription);

@@ -5,6 +5,13 @@ namespace UserContentIndexer.Services
 {
     internal class SplitResults : ISplitResults
     {
+        public string SplitDescription(string videoResult)
+        {
+            var description = videoResult.Trim().Replace("Description:\r\n", "").Split("\r\nTags:")[0];
+            return description;
+        }
+
+
         public List<Tags> SplitTags(string videoResults)
         {
             string[] videoImageBlocks = videoResults.Split(new string[] { "[VIDEOIMAGE]" }, StringSplitOptions.RemoveEmptyEntries);
