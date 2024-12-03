@@ -8,7 +8,10 @@ namespace UserContentIndexer
 {
     class Program
     {
-        public const string VideoPath = @"C:\Users\nickx\Downloads\testvideo.mp4";
+
+        // Add here your Video prefered MP4 format
+        internal const string VideoPath = "";
+
 
         static async Task Main(string[] args)
         {
