@@ -21,7 +21,7 @@ For each image, provide a structured analysis with the following components:
    - Significant actions or events
    - Composition and visual flow
 
-3. Tags
+2. Tags
    - Most relevant descriptive tags
    - Categorical tags
    - Style and mood tags
@@ -46,7 +46,10 @@ Tags:
         {
             List<string> results = new List<string>();
 
-            var parameters = new ModelParams(llama);
+            var parameters = new ModelParams(llama)
+            {
+                GpuLayerCount = -1,
+            };
             using var model = await LLamaWeights.LoadFromFileAsync(parameters);
             using var clipModel = await LLavaWeights.LoadFromFileAsync(llava);
 
@@ -69,8 +72,8 @@ Tags:
                         Temperature = 0.1f
                     },
 
-                    AntiPrompts = new List<string> { "\nUSER:", "Image:", "Note:"},
-                    MaxTokens = 1024
+                    AntiPrompts = new List<string> { "\nUSER:"},
+                    MaxTokens = 512
 
                 };
 
