@@ -34,7 +34,7 @@ namespace UserContentIndexer
 
             // This section creates the processor object which is used to process the audio file, it uses language `auto` to detect the language of the audio file.
             using var processor = whisperFactory.CreateBuilder()
-                .WithLanguage("auto")
+                .WithLanguage("auto")                
                 .Build();
 
             using var fileStream = File.OpenRead(ContentLink);
@@ -42,8 +42,10 @@ namespace UserContentIndexer
             // This section processes the audio file and prints the results (start time, end time and text) to the console.
             await foreach (var result in processor.ProcessAsync(fileStream))
             {
-                text += result.Text;
-                //Console.WriteLine($"{result.Start}->{result.End}: {result.Text}");
+                if (!result.Text.Contains('[') || !result.Text.Contains(']'))
+                {
+                    text += result.Text;
+                }
             }
             processor.Dispose();
             whisperFactory.Dispose();
