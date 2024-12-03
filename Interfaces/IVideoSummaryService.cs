@@ -2,6 +2,6 @@
 {
     public interface IVideoSummaryService
     {
-        Task<string> GenerateVideoSummaryAsync(string llamaModelPath, List<string> videoResults, string whisperResult);
+        Task<string> GenerateVideoSummaryAsync(string llamaModelPath, List<string> videoResults);
     }
 }

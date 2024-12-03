@@ -26,7 +26,7 @@ Description:
 
 Tags:
 - Primary Subject Tags: [comma-separated tags]
-- Mood/Atmosphere Tags: [comma-separated tags]
+- Atmosphere Tags: [comma-separated tags]
 - Style Tags: [comma-separated tags]
 - Camera Angle: [comma-separated tags]
-- Style: [comma-separated tags]
+
