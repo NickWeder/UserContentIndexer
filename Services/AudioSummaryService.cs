@@ -1,24 +1,19 @@
-﻿using UserContentIndexer.Interfaces;
-using UserContentIndexer.Builders;
-using LLama.Common;
+﻿using LLama.Common;
 using LLama.Sampling;
+using UserContentIndexer.Builders;
+using UserContentIndexer.Interfaces;
+
 
 namespace UserContentIndexer.Services
 {
-    public class VideoSummaryService : IVideoSummaryService
+    internal class AudioSummaryService : IAudioSummaryService
     {
         private readonly ILanguageModelService _languageModelService;
         private readonly PromptBuilder _promptBuilder;
 
-        public VideoSummaryService(ILanguageModelService languageModelService, PromptBuilder promptBuilder)
+        public async Task<string> GenerateAudioSummaryAsync(string llamaModelPath, string trascription)
         {
-            _languageModelService = languageModelService;
-            _promptBuilder = promptBuilder;
-        }
-
-        public async Task<string> GenerateVideoSummaryAsync(string llamaModelPath, List<string> videoResults)
-        {
-            var prompt = _promptBuilder.BuildVideoSummaryPrompt(videoResults);
+            var prompt = _promptBuilder.BuildAudioSummaryPrompt(trascription);
 
             var inferenceParams = new InferenceParams
             {

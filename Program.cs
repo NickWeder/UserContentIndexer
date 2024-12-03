@@ -1,8 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using UserContentIndexer.Builders;
 using UserContentIndexer.Interfaces;
 using UserContentIndexer.Services;
@@ -12,8 +8,10 @@ namespace UserContentIndexer
 {
     class Program
     {
+
         // Add here your Video prefered MP4 format
         internal const string VideoPath = "";
+
 
         static async Task Main(string[] args)
         {
@@ -24,6 +22,9 @@ namespace UserContentIndexer
             var videoService = serviceProvider.GetService<IVideoService>();
             var downloadService = serviceProvider.GetService<IDownloadService>();
             var videoSummaryService = serviceProvider.GetService<IVideoSummaryService>();
+            var audioSummaryService = serviceProvider.GetService<IAudioSummaryService>();
+            var splitResults = serviceProvider.GetService<ISplitResults>();
+            var saveResults = serviceProvider.GetService<ISaveResults>();
 
             var images = sceneDetector.ProcessVideo(VideoPath);
 
@@ -35,14 +36,10 @@ namespace UserContentIndexer
 
             var analysisResults = await videoService.AnalyzeVideoAsync(llamaModelPath, llavaModelPath, images, transcription);
 
-            var summary = await videoSummaryService.GenerateVideoSummaryAsync(llamaModelPath, analysisResults, transcription);
-
-            foreach (var txt in analysisResults)
-            {
-                Console.WriteLine(txt);
-            }
-            Console.WriteLine(transcription);
-            Console.WriteLine("Video Summary:\n" + summary);
+            var videoSummary = await videoSummaryService.GenerateVideoSummaryAsync(llamaModelPath, analysisResults);
+            var audioSummary = await audioSummaryService.GenerateAudioSummaryAsync(llamaModelPath, transcription);
+            var tags = splitResults.SplitTags(videoSummary);
+            saveResults.SaveResultsJson(videoSummary, audioSummary, tags, VideoPath);
 
             sceneDetector.DeleteCache();
         }
@@ -53,10 +50,13 @@ namespace UserContentIndexer
 
             services.AddTransient<SceneDetector>();
             services.AddTransient<IAudioService, AudioService>();
+            services.AddTransient<IAudioSummaryService, AudioSummaryService>();
             services.AddTransient<IDownloadService, DownloadService>();
             services.AddTransient<IVideoService, VideoService>();
             services.AddTransient<IVideoSummaryService, VideoSummaryService>();
             services.AddTransient<ILanguageModelService, LanguageModelService>();
+            services.AddTransient<ISaveResults, SaveResults>();
+            services.AddTransient<ISplitResults, SplitResults>();
             services.AddTransient<PromptBuilder>();
 
             return services.BuildServiceProvider();
