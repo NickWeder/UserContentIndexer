@@ -1,15 +1,15 @@
-namespace UserContentIndexer.Services
+namespace UserContentIndexerAPI.Controllers.Services
 {
     using LLama.Common;
     using LLama.Native;
     using LLama.Sampling;
     using LLama;
     using System.Text.RegularExpressions;
-    using UserContentIndexer.Interfaces;
-    using UserContentIndexer.Models;
-    using UserContentIndexer.Utilities;
     using UserContentIndexer.Builders;
     using System.Text;
+    using UserContentIndexerAPI.Controllers.Interfaces;
+    using UserContentIndexerAPI.Controllers.Models;
+    using UserContentIndexerAPI.Controllers.Utilities;
 
     public class ImageAnalyzeService : IImageAnalyzeService
     {

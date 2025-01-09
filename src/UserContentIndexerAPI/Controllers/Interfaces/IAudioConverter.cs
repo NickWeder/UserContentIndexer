@@ -1,4 +1,4 @@
-﻿namespace UserContentIndexer.Interfaces
+﻿namespace UserContentIndexerAPI.Controllers.Interfaces
 {
     public interface IAudioConverter
     {

@@ -1,6 +1,6 @@
-namespace UserContentIndexer.Interfaces
+namespace UserContentIndexerAPI.Controllers.Interfaces
 {
-    using UserContentIndexer.Models;
+    using UserContentIndexerAPI.Controllers.Models;
 
     public interface IAudioService
     {

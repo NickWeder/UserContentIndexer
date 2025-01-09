@@ -1,8 +1,9 @@
-namespace UserContentIndexer.Services
+namespace UserContentIndexerAPI.Controllers.Services
 {
     using Microsoft.Extensions.Logging;
-    using UserContentIndexer.Interfaces;
-    using UserContentIndexer.Models;
+    using UserContentIndexerAPI.Controllers.Interfaces;
+    using UserContentIndexerAPI.Controllers.Models;
+
     public class DownloadService : IDownloadService
     {
         private readonly ILogger<DownloadService> logger;

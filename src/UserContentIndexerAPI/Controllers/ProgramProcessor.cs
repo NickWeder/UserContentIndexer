@@ -1,11 +1,11 @@
-namespace UserContentIndexer
+namespace UserContentIndexerAPI.Controllers
 {
-    using UserContentIndexer.Interfaces;
-    using UserContentIndexer.Models;
-    using UserContentIndexer.Utilities;
     using System.Text.Json;
     using System.Diagnostics;
     using Microsoft.Extensions.Logging;
+    using UserContentIndexerAPI.Controllers.Interfaces;
+    using UserContentIndexerAPI.Controllers.Models;
+    using UserContentIndexerAPI.Controllers.Utilities;
 
     internal class ProgramProcessor
     {
@@ -24,7 +24,7 @@ namespace UserContentIndexer
             this.imageAnalyzeService = imageAnalyzeService;
         }
 
-        public async Task Start(string videoPath)
+        public async Task<JsonStructure> Start(string videoPath)
         {
             this.logger.LogInformation("ProgramProcessor - Start");
             var sw1 = new Stopwatch();
@@ -46,13 +46,13 @@ namespace UserContentIndexer
             jsonStructure.ImageDescriptions = await this.imageAnalyzeService.AnalyzeImageAsync(images, ModelType.Llava_ggml);
             sw3.Stop();
 
-            File.WriteAllText(videoPath.Replace(".mp4", ".json"), JsonSerializer.Serialize(jsonStructure));
-
             this.logger.LogInformation($"ProgramProcessor - Time: {sw1.Elapsed + sw2.Elapsed + sw3.Elapsed}");
             this.logger.LogInformation($"Split in Scnees - Time: {sw1.Elapsed}");
             this.logger.LogInformation($"Audio transcibation - Time: {sw2.Elapsed}");
             this.logger.LogInformation($"Image Description - Time: {sw3.Elapsed}");
             this.logger.LogInformation("ProgramProcessor - End");
+
+            return jsonStructure;
         }
 
     }

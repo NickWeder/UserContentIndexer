@@ -1,4 +1,4 @@
-namespace UserContentIndexer.Interfaces
+namespace UserContentIndexerAPI.Controllers.Interfaces
 {
     using LLama;
     using Whisper.net;

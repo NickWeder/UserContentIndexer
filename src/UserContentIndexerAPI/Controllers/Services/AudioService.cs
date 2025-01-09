@@ -1,9 +1,9 @@
-namespace UserContentIndexer.Services
+namespace UserContentIndexerAPI.Controllers.Services
 {
     using System.Text;
     using Microsoft.Extensions.Logging;
-    using UserContentIndexer.Interfaces;
-    using UserContentIndexer.Models;
+    using UserContentIndexerAPI.Controllers.Interfaces;
+    using UserContentIndexerAPI.Controllers.Models;
     using Whisper.net.Ggml;
 
     public class AudioService : IAudioService

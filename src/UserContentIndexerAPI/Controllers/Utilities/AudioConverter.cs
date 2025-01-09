@@ -1,9 +1,9 @@
-namespace UserContentIndexer.Utilities
+namespace UserContentIndexerAPI.Controllers.Utilities
 {
     using NAudio.Wave;
     using NAudio.Lame;
-    using UserContentIndexer.Interfaces;
     using Microsoft.Extensions.Logging;
+    using UserContentIndexerAPI.Controllers.Interfaces;
 
     public class AudioConverter : IAudioConverter
     {
@@ -21,7 +21,7 @@ namespace UserContentIndexer.Utilities
         public string ConvertMp4ToWav(string inputFilePath)
         {
             this.logger.LogInformation("Convert .Mp4 to .Wav");
-            var outputFilePath = inputFilePath.Split('.')[0] + ".wav";
+            var outputFilePath = Path.Combine(Path.GetDirectoryName(inputFilePath), Path.GetFileNameWithoutExtension(inputFilePath)) + ".wav";
             try
             {
                 if (!File.Exists(inputFilePath))

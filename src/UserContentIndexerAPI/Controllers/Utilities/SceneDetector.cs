@@ -1,8 +1,8 @@
-namespace UserContentIndexer.Utilities
+namespace UserContentIndexerAPI.Controllers.Utilities
 {
     using Microsoft.Extensions.Logging;
     using OpenCvSharp;
-    using UserContentIndexer.Models;
+    using UserContentIndexerAPI.Controllers.Models;
     using static System.Net.Mime.MediaTypeNames;
 
     public class SceneDetector
@@ -230,8 +230,8 @@ namespace UserContentIndexer.Utilities
 
                     // Advanced scene change detection logic
                     var isSceneChange =
-                        (histDiffCorrel < histogramSimilarityThreshold) &&
-                        (edgeChangeRatio > edgeChangeThreshold);
+                        histDiffCorrel < histogramSimilarityThreshold &&
+                        edgeChangeRatio > edgeChangeThreshold;
 
                     // Comprehensive metrics
                     var metrics = new Dictionary<string, double>

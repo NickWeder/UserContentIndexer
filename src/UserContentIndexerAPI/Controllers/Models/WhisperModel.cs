@@ -1,4 +1,4 @@
-namespace UserContentIndexer.Models
+namespace UserContentIndexerAPI.Controllers.Models
 {
     using Whisper.net.Ggml;
     public class WhisperModel

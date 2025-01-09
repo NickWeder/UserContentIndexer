@@ -1,0 +1,6 @@
+@UserContentIndexerAPI_HostAddress = http://localhost:5245
+
+GET {{UserContentIndexerAPI_HostAddress}}/GetUserContent/
+Accept: application/json
+
+###
