@@ -1,12 +1,12 @@
-namespace UserContentIndexer.Services
+namespace UserContentIndexerAPI.Controllers.Services
 {
     using Whisper.net;
     using Whisper.net.Ggml;
-    using UserContentIndexer.Models;
-    using UserContentIndexer.Interfaces;
     using LLama.Common;
     using LLama;
     using LLama.Sampling;
+    using UserContentIndexerAPI.Controllers.Interfaces;
+    using UserContentIndexerAPI.Controllers.Models;
 
     public class ModelManager : IModelManager
     {

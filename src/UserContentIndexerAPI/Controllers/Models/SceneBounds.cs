@@ -1,4 +1,4 @@
-﻿namespace UserContentIndexer.Models
+﻿namespace UserContentIndexerAPI.Controllers.Models
 {
     public class SceneBounds
     {

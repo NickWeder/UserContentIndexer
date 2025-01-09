@@ -1,6 +1,7 @@
-namespace UserContentIndexer.Utilities
+namespace UserContentIndexerAPI.Controllers.Utilities
 {
-    using UserContentIndexer.Models;
+    using UserContentIndexerAPI.Controllers.Models;
+
     public class SplitResults
     {
         public static string SplitDescription(string videoResult)
