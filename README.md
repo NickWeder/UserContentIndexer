@@ -151,7 +151,7 @@ Extensive logging is implemented using Microsoft.Extensions.Logging:
 
 ## License
 
-[Add your chosen license here]
+Apache-2.0 license
 
 ## Acknowledgments
 
