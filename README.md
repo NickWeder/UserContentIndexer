@@ -1,20 +1,70 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# User Content Indexer
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+The **User Content Indexer** is a tool designed to efficiently index and retrieve user-generated content. This project simplifies the management of content through robust indexing and search functionalities.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Features
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- **Content Indexing**: Quickly index user-generated content for fast retrieval.
+- **Search Capabilities**: Search indexed content with high accuracy and speed.
+- **Scalable**: Designed to handle large volumes of user content.
+- **Customizable**: Easy to adapt for specific use cases and content types.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Links
+
+- **GitHub Repository**: [User Content Indexer](https://github.com/NickWeder/UserContentIndexer.git)
+
+## Requirements
+
+Ensure the following are installed on your system before proceeding:
+
+- Python 3.9 or higher
+- Required dependencies (listed in `requirements.txt`)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/NickWeder/UserContentIndexer.git
+   cd UserContentIndexer
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+1. **Index Content**
+   Add your content to the index by running:
+   ```bash
+   python indexer.py --action index --content "path/to/your/content"
+   ```
+
+2. **Search Content**
+   Search through indexed content:
+   ```bash
+   python indexer.py --action search --query "your search query"
+   ```
+
+3. **Configuration**
+   Adjust configuration settings in `config.json` to suit your specific needs.
+
+## TODO
+
+- Enhance search algorithms for better performance.
+- Add support for additional content formats.
+- Implement a web-based interface for easier access.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+For questions or support, feel free to open an issue in the repository or contact the repository owner directly.
+
